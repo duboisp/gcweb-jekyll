@@ -1,0 +1,23 @@
+
+
+/*
+Build scrip that
+
+* Create and organize Jekyll template
+* Create and generate GCWeb build
+* Create the GCWeb website
+
+
+
+Component -> Related to the content area / main area
+
+site-layouts -> Related to the whole site container (core template, baseline color + style..., commons/global utility)
+
+
+Create a function to convert .hbs into .md
+
+*/
+
+// 1. copy defaults layout into _layout
+
+Keep the website file at the same place, instead generate the jekyll template and the asset around it.
