@@ -40,4 +40,6 @@ csslint.out.xml
 *.log
 
 # Jekyll generated files
-_layouts/*
+#_layouts/
+#_includes/
+#_data/

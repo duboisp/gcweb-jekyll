@@ -17,8 +17,10 @@ module.exports = (grunt) ->
 		"reorg"
 		"Initial build setup"
 		[
-			"clean:newlayout"
+			"clean:jekyll"
 			"copy:newlayout"
+			"copy:newsiteinclude"
+			"copy:sitedata"
 		]
 	)
 	
@@ -243,7 +245,7 @@ module.exports = (grunt) ->
 		clean:
 			dist: [ "dist"]
 			deps: ["<%= themeDist %>/theme-js-deps"]
-			newlayout: [ "_layouts" ]
+			jekyll: [ "_layouts", "_includes", "_data" ]
 
 		concat:
 			plugins:
@@ -268,9 +270,28 @@ module.exports = (grunt) ->
 		copy:
 			newlayout:
 				expand: true
+				flatten: true
 				cwd: "sites-layout/html-pages"
-				src: "*.*"
+				src: "*.html"
 				dest: "_layouts"
+			newsiteinclude:
+				expand: true
+				flatten: true
+				cwd: "sites-layout"
+				src: [ 
+					"footers/*.html"
+					"headers/*.html"
+					"html-head/*.html"
+				]
+				dest: "_includes"
+			sitedata:
+				expand: true
+				flatten: true
+				cwd: "sites-layout/data"
+				src: [ "*.json", "*.json-ld" ]
+				dest: "_data"
+				rename: (dest, src) -> 
+					dest + "/" + src.replace( '.json-ld', '.json' )
 			wetboew:
 				expand: true
 				cwd: "node_modules/wet-boew/dist"
